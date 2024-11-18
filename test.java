@@ -5,13 +5,13 @@
 import com.comsol.model.*;
 import com.comsol.model.util.*;
 
-/** Model exported on Nov 17 2024, 22:38 by COMSOL 6.2.0.290. */
+/** Model exported on Nov 18 2024, 10:53 by COMSOL 6.2.0.415. */
 public class test {
 
   public static Model run() {
     Model model = ModelUtil.create("Model");
 
-    model.modelPath("/Users/bing/Documents/GitHub/PYVA");
+    model.modelPath("C:\\Users\\DGG\\Documents\\comsol\\pyva\\PYVA");
 
     model.label("Model");
 
@@ -66,6 +66,10 @@ public class test {
     model.component("comp1").material("mat4").label("Al2O3");
     model.component("comp1").material("mat4").tag("Al2O3");
     model.component("comp1").material("Al2O3").propertyGroup("def").set("relpermittivity", new String[]{"4.5"});
+    model.component("comp1").material().create("mat5", "Common");
+    model.component("comp1").material("mat5").label("metal");
+    model.component("comp1").material("mat5").tag("metal");
+    model.component("comp1").material("metal").propertyGroup("def").set("relpermittivity", new String[]{"1"});
     model.component("comp1").material("InAlAs").selection().set(1, 5);
     model.component("comp1").material("InGaAs").selection().set(2, 4);
     model.component("comp1").material("InAs").selection().set(3);
@@ -75,7 +79,7 @@ public class test {
     model.component("comp1").geom("geom1").feature("wp1").set("unite", true);
     model.component("comp1").geom("geom1").feature("wp1").geom().create("imp1", "Import");
     model.component("comp1").geom("geom1").feature("wp1").geom().feature("imp1")
-         .set("filename", "/Users/bing/Desktop/COMSOL_pyva/GDS/dot_3layers.GDS");
+         .set("filename", "C:/Users/DGG/Documents/comsol/GDS/dot_3layers.GDS");
     model.component("comp1").geom("geom1").feature("wp1").geom().feature("imp1").setIndex("importlayer", false, 1);
     model.component("comp1").geom("geom1").feature("wp1").geom().feature("imp1").setIndex("importlayer", false, 2);
     model.component("comp1").geom("geom1").feature("wp1").geom().feature("imp1").setIndex("importlayer", false, 3);
@@ -102,7 +106,7 @@ public class test {
     model.component("comp1").geom("geom1").feature("wp2").set("unite", true);
     model.component("comp1").geom("geom1").feature("wp2").geom().create("imp2", "Import");
     model.component("comp1").geom("geom1").feature("wp2").geom().feature("imp2")
-         .set("filename", "/Users/bing/Desktop/COMSOL_pyva/GDS/dot_3layers.GDS");
+         .set("filename", "C:/Users/DGG/Documents/comsol/GDS/dot_3layers.GDS");
     model.component("comp1").geom("geom1").feature("wp2").geom().feature("imp2").setIndex("importlayer", false, 0);
     model.component("comp1").geom("geom1").feature("wp2").geom().feature("imp2").setIndex("importlayer", false, 1);
     model.component("comp1").geom("geom1").feature("wp2").geom().feature("imp2").setIndex("importlayer", false, 3);
@@ -131,7 +135,7 @@ public class test {
     model.component("comp1").geom("geom1").run("wp3");
     model.component("comp1").geom("geom1").feature("wp3").geom().create("imp3", "Import");
     model.component("comp1").geom("geom1").feature("wp3").geom().feature("imp3")
-         .set("filename", "/Users/bing/Desktop/COMSOL_pyva/GDS/dot_3layers.GDS");
+         .set("filename", "C:/Users/DGG/Documents/comsol/GDS/dot_3layers.GDS");
     model.component("comp1").geom("geom1").feature("wp3").geom().feature("imp3").setIndex("importlayer", false, 0);
     model.component("comp1").geom("geom1").feature("wp3").geom().feature("imp3").setIndex("importlayer", false, 1);
     model.component("comp1").geom("geom1").feature("wp3").geom().feature("imp3").setIndex("importlayer", false, 3);
@@ -151,7 +155,7 @@ public class test {
     model.component("comp1").geom("geom1").run("wp4");
     model.component("comp1").geom("geom1").feature("wp4").geom().create("imp4", "Import");
     model.component("comp1").geom("geom1").feature("wp4").geom().feature("imp4")
-         .set("filename", "/Users/bing/Desktop/COMSOL_pyva/GDS/dot_3layers.GDS");
+         .set("filename", "C:/Users/DGG/Documents/comsol/GDS/dot_3layers.GDS");
     model.component("comp1").geom("geom1").feature("wp4").geom().feature("imp4").setIndex("importlayer", false, 1);
     model.component("comp1").geom("geom1").feature("wp4").geom().feature("imp4").setIndex("importlayer", false, 2);
     model.component("comp1").geom("geom1").feature("wp4").geom().feature("imp4").setIndex("importlayer", false, 3);
@@ -171,7 +175,7 @@ public class test {
     model.component("comp1").geom("geom1").run("wp5");
     model.component("comp1").geom("geom1").feature("wp5").geom().create("imp5", "Import");
     model.component("comp1").geom("geom1").feature("wp5").geom().feature("imp5")
-         .set("filename", "/Users/bing/Desktop/COMSOL_pyva/GDS/dot_3layers.GDS");
+         .set("filename", "C:/Users/DGG/Documents/comsol/GDS/dot_3layers.GDS");
     model.component("comp1").geom("geom1").feature("wp5").geom().feature("imp5").setIndex("importlayer", false, 0);
     model.component("comp1").geom("geom1").feature("wp5").geom().feature("imp5").setIndex("importlayer", false, 1);
     model.component("comp1").geom("geom1").feature("wp5").geom().feature("imp5").setIndex("importlayer", false, 3);
@@ -191,7 +195,7 @@ public class test {
     model.component("comp1").geom("geom1").run("wp6");
     model.component("comp1").geom("geom1").feature("wp6").geom().create("imp6", "Import");
     model.component("comp1").geom("geom1").feature("wp6").geom().feature("imp6")
-         .set("filename", "/Users/bing/Desktop/COMSOL_pyva/GDS/dot_3layers.GDS");
+         .set("filename", "C:/Users/DGG/Documents/comsol/GDS/dot_3layers.GDS");
     model.component("comp1").geom("geom1").feature("wp6").geom().feature("imp6").setIndex("importlayer", false, 0);
     model.component("comp1").geom("geom1").feature("wp6").geom().feature("imp6").setIndex("importlayer", false, 1);
     model.component("comp1").geom("geom1").feature("wp6").geom().feature("imp6").setIndex("importlayer", false, 2);
@@ -211,7 +215,7 @@ public class test {
     model.component("comp1").geom("geom1").run("wp7");
     model.component("comp1").geom("geom1").feature("wp7").geom().create("imp7", "Import");
     model.component("comp1").geom("geom1").feature("wp7").geom().feature("imp7")
-         .set("filename", "/Users/bing/Desktop/COMSOL_pyva/GDS/dot_3layers.GDS");
+         .set("filename", "C:/Users/DGG/Documents/comsol/GDS/dot_3layers.GDS");
     model.component("comp1").geom("geom1").feature("wp7").geom().feature("imp7").setIndex("importlayer", false, 0);
     model.component("comp1").geom("geom1").feature("wp7").geom().feature("imp7").setIndex("importlayer", false, 2);
     model.component("comp1").geom("geom1").feature("wp7").geom().feature("imp7").setIndex("importlayer", false, 3);
@@ -229,7 +233,7 @@ public class test {
     model.component("comp1").geom("geom1").run("wp8");
     model.component("comp1").geom("geom1").feature("wp8").geom().create("imp8", "Import");
     model.component("comp1").geom("geom1").feature("wp8").geom().feature("imp8")
-         .set("filename", "/Users/bing/Desktop/COMSOL_pyva/GDS/dot_3layers.GDS");
+         .set("filename", "C:/Users/DGG/Documents/comsol/GDS/dot_3layers.GDS");
     model.component("comp1").geom("geom1").feature("wp8").geom().feature("imp8").setIndex("importlayer", false, 0);
     model.component("comp1").geom("geom1").feature("wp8").geom().feature("imp8").setIndex("importlayer", false, 1);
     model.component("comp1").geom("geom1").feature("wp8").geom().feature("imp8").setIndex("importlayer", false, 2);
@@ -244,12 +248,11 @@ public class test {
 
     model.label("test.mph");
 
-    model.component("comp1").view("view1").set("transparency", true);
-
-    model.component("comp1").material("Al2O3").selection().set(7, 11, 16, 19, 21);
-    model.component("comp1").material("InAlAs").selection().set(2, 6, 10, 13);
-    model.component("comp1").material("InGaAs").selection().set(3, 5, 9, 15);
-    model.component("comp1").material("Al2O3").selection().set(7, 11, 14, 16, 19, 21);
+    model.component("comp1").geom("geom1").create("sel1", "ExplicitSelection");
+    model.component("comp1").geom("geom1").feature("sel1").label("al203");
+    model.component("comp1").geom("geom1").feature("sel1").selection("selection").init();
+    model.component("comp1").geom("geom1").feature("sel1").selection("selection").set("ext4", "ext5");
+    model.component("comp1").geom("geom1").run("sel1");
 
     return model;
   }

@@ -6,7 +6,7 @@ def build(model, **kwargs):
     gds_address  = kwargs.get('gds_address', None)  # gds file address
     etch_name    = kwargs.get('etch_name', None)    # name of the etch 
     etch_depth   = kwargs.get('etch_depth', None)   # depth of the etch 
-    id           = kwargs.get('gdslayerID', None)      # etch layer number 
+    id           = kwargs.get('gdslayerID', None)   # etch layer number 
     numOflayers  = kwargs.get('numOflayers', None)  # number of layers
 
 

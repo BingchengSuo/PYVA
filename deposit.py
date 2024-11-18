@@ -1,7 +1,7 @@
 from functions import *
 
 @CallCounter
-def build(model, **kwargs):
+def build(model, **kwargs): 
     identifier        = CallCounter.total_call_count
     gds_address       = kwargs.get('gds_address', None)    # gds file address
     deposit_depth     = kwargs.get('deposit_depth', None)  # depth of the deposition (negative number [nm])
@@ -35,6 +35,7 @@ def build(model, **kwargs):
     model.component("comp1").geom("geom1").feature(extrude_name).setIndex("distance", str(deposit_thickness)+"[nm]", 0)
     model.component("comp1").geom("geom1").feature(extrude_name).label(deposit_name+"_ext")
     model.component("comp1").geom("geom1").run(extrude_name)
+    return extrude_name # return the extrude name for selection 
 
 
 

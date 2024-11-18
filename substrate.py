@@ -7,7 +7,6 @@ def build(model, substrate_layers, layer_thickness, substrate_size):
         "InGaAs": 14.1,
         "InAlAs": 13.3,
         "Al2O3" : 4.5,
-        "metal" : 1
     }
     substrate_thickness = layer_thickness.sum()
 

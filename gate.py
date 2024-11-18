@@ -6,7 +6,7 @@ def build(model, **kwargs):
     gds_address       = kwargs.get('gds_address', None)    # gds file address
     gate_depth        = kwargs.get('gate_depth', None)     # depth of the deposition (negative number [nm])
     gate_name         = kwargs.get('gate_name', None)      # name of the deposition
-    id                = kwargs.get('gdslayerID', None)        # deposit layer number 
+    id                = kwargs.get('gdslayerID', None)     # deposit layer number 
     numOflayers       = kwargs.get('numOflayers', None)    # number of layers
 
     workplane_name = 'wp'  + str(identifier)
@@ -31,3 +31,4 @@ def build(model, **kwargs):
     model.component("comp1").geom("geom1").feature(workplane_name).set("selresultshow", "all")
     model.component("comp1").geom("geom1").feature(workplane_name).set("color", "18")
     model.component("comp1").geom("geom1").run()
+    return workplane_name
