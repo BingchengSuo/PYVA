@@ -16,11 +16,11 @@ substrate_size      = 40e3                                                      
 substrate.build(model, substrate_layers, layer_thickness, substrate_size) # build substrate
 
 # etch
-addr = "/Users/bing/Desktop/COMSOL_pyva/GDS/dot_3layers.GDS"
+addr = "C:/Users/DGG/Documents/comsol/GDS/dot_3layers.GDS"
 etch.build(model, gds_address = addr, etch_name = "mesa",\
             etch_depth = 4+10.5+120+35, gdslayerID=0, numOflayers = gds_layer_num)
 
-etch.build(model, gds_address = addr, etch_name = "metal",\
+etch.build(model, gds_address = addr, etch_name = "metal_island",\
             etch_depth = 4+10.5+120+35, gdslayerID=2, numOflayers = gds_layer_num)
 
 # deposition
