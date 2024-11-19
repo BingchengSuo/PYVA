@@ -6,39 +6,43 @@ import gate
 import material
 import es
 import numpy as np
+import config
 
-# build model
+# configuration
 model = setup.build()
+config.model               = model
+config.numOfGDSlayers      = 6
+config.gds_addr            = "dot_3layers.GDS"
+config.substrate_layers    = ['InAlAs','InGaAs','InAs','InGaAs','InAlAs']       
+config.layer_thickness     = np.array([1500, 10.5, 4, 10.5, 120])               
+config.substrate_size      = 40e3
 
 # build substrate
-substrate_layers    = ['InAlAs','InGaAs','InAs','InGaAs','InAlAs']        # from bottom to top
-layer_thickness     = np.array([1500, 10.5, 4, 10.5, 120])                # from bottom to top [nm]
-gds_layer_num       = 6
-substrate_size      = 40e3                                                # width x width (assume square shape)[nm]
-substrate.build(model, substrate_layers, layer_thickness, substrate_size) # build substrate
+substrate.build(config.substrate_layers, config.layer_thickness, config.substrate_size) # build substrate
+
 
 # etch
-# addr = "C:/Users/DGG/Documents/comsol/GDS/dot_3layers.GDS"
-addr = "/Users/bing/Desktop/COMSOL_pyva/GDS/dot_3layers.GDS"
-etch.build(model, gds_address = addr, etch_name = "mesa_etch",\
-            etch_depth = 4+10.5+120, gdslayerID=0, chamfer = 1 - 2*(4+10.5+120)/390, numOflayers = gds_layer_num)
+mesa = etch.build(etch_name = "mesa_etch",\
+            etch_depth = 4+10.5+120, gdslayerID=0, chamfer = 1 - 2*(4+10.5+120)/390)
 
 
 # deposition
+semi_dot = deposit.build(mesa = mesa, deposit_depth = -(4+10.5+120),\
+                         thickness = 4, deposit_name = 'dot', gdslayerID = 4)
 
-semi_dot     = deposit.build(model, gds_address = addr, deposit_depth = -(4+10.5+120),\
-                             thickness = 4, deposit_name = 'semi_dot', gdslayerID = 4, numOflayers = gds_layer_num)
+metal = deposit.build(mesa = mesa, deposit_depth = -(4+10.5+120),\
+                         thickness = 50, deposit_name = 'metal', gdslayerID = 2)
 
 # build gates
-qpc     = gate.build(model, gds_address = addr, gate_depth = 35, gate_name = 'QPC', gdslayerID = 1, numOflayers = gds_layer_num)
-plunger = gate.build(model, gds_address = addr, gate_depth = -(4+10.5+120-35), gate_name = 'Plunger', gdslayerID = 3, numOflayers = gds_layer_num)
+qpc     = gate.build(gate_depth = 35, gate_name = 'QPC', gdslayerID = 1)
+plunger = gate.build(gate_depth = -(4+10.5+120-35), gate_name = 'Plunger', gdslayerID = 3)
 
 # assign material
 # material.assign(model, material = 'Al2O3', selList = [al2o3_mesa])
 
 # assign electrostatics module
-es.assign(model, es = "DomainTerminal", selList = [semi_dot])
-es.assign(model, es = 'Ground', selList = [qpc, plunger])
+es.assign(es = "DomainTerminal", selList = [semi_dot])
+es.assign(es = 'Ground', selList = [qpc, plunger])
 
 fileName = 'test1.mph'
 model.save(fileName)
