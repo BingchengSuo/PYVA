@@ -1,4 +1,5 @@
 import jpype
+import time
 
 def jstr(pystr):
         """

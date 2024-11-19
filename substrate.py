@@ -1,7 +1,11 @@
 from functions import *
+import config
 
-def build(model, substrate_layers, layer_thickness, substrate_size):
-
+def build():
+    model = config.model
+    substrate_layers = config.substrate_layers
+    layer_thickness  = config.layer_thickness
+    substrate_size   = config.substrate_size
     material_rp = { # material relative permittivity
         "InAs"  : 15.1,
         "InGaAs": 14.1,

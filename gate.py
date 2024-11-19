@@ -1,13 +1,15 @@
 from functions import *
+import config
 
 @CallCounter
-def build(model, **kwargs):
+def build(**kwargs):
     identifier        = CallCounter.total_call_count
-    gds_address       = kwargs.get('gds_address', None)    # gds file address
     gate_depth        = kwargs.get('gate_depth', None)     # depth of the deposition (negative number [nm])
     gate_name         = kwargs.get('gate_name', None)      # name of the deposition
     id                = kwargs.get('gdslayerID', None)     # deposit layer number 
-    numOflayers       = kwargs.get('numOflayers', None)    # number of layers
+    numOflayers  = config.numOfGDSlayers
+    gds_address  = config.gds_addr
+    model        = config.model
 
     workplane_name = 'wp'  + str(identifier)
     import_name    = 'imp' + str(identifier)

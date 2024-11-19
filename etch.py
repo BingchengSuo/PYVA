@@ -1,14 +1,16 @@
 from functions import *
+import config
 
 @CallCounter
-def build(model, **kwargs):
+def build(**kwargs):
     identifier   = CallCounter.total_call_count
-    gds_address  = kwargs.get('gds_address', None)  # gds file address
     etch_name    = kwargs.get('etch_name', None)    # name of the etch 
-    etch_depth   = kwargs.get('etch_depth', None)   # depth of the etch 
     chamfer      = kwargs.get('chamfer', None)   # depth of the etch 
     id           = kwargs.get('gdslayerID', None)   # etch layer number 
-    numOflayers  = kwargs.get('numOflayers', None)  # number of layers
+    numOflayers  = config.numOfGDSlayers
+    gds_address  = config.gds_addr
+    model        = config.model
+    etch_depth   = -config.etch_depth
 
 
     workplane_name = 'wp'  + str(identifier)
@@ -47,6 +49,6 @@ def build(model, **kwargs):
     write_log(dif_name)
     model.component("comp1").geom("geom1").runPre("fin")
     model.component("comp1").geom("geom1").run()
-
+    return dif_name
 
 
