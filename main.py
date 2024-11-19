@@ -18,22 +18,18 @@ config.layer_thickness     = np.array([1500, 10.5, 4, 10.5, 120])
 config.substrate_size      = 40e3
 
 # build substrate
-substrate.build(config.substrate_layers, config.layer_thickness, config.substrate_size) # build substrate
+substrate.build()
 
 
 # etch
-mesa = etch.build(etch_name = "mesa_etch",\
-            etch_depth = 4+10.5+120, gdslayerID=0, chamfer = 1 - 2*(4+10.5+120)/390)
-
+mesa = etch.build(etch_name = "mesa_etch", etch_depth = 134.5, gdslayerID=0, chamfer = 1 - 2*(4+10.5+120)/390)
 
 # deposition
-semi_dot = deposit.build(mesa = mesa, deposit_depth = -(4+10.5+120),\
-                         thickness = 4, deposit_name = 'dot', gdslayerID = 4)
+semi_dot = deposit.build(mesa = mesa, deposit_depth = -134.5, thickness = 4, deposit_name = 'dot', gdslayerID = 4)
 
-metal = deposit.build(mesa = mesa, deposit_depth = -(4+10.5+120),\
-                         thickness = 50, deposit_name = 'metal', gdslayerID = 2)
+metal    = deposit.build(mesa = mesa, deposit_depth = -134.5, thickness = 50, deposit_name = 'metal', gdslayerID = 2)
 
-# build gates
+# gates
 qpc     = gate.build(gate_depth = 35, gate_name = 'QPC', gdslayerID = 1)
 plunger = gate.build(gate_depth = -(4+10.5+120-35), gate_name = 'Plunger', gdslayerID = 3)
 
