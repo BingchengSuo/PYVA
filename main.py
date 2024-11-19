@@ -18,15 +18,13 @@ substrate_size      = 40e3                                                # widt
 substrate.build(model, substrate_layers, layer_thickness, substrate_size) # build substrate
 
 # etch
-addr = "C:/Users/DGG/Documents/comsol/GDS/dot_3layers.GDS"
+# addr = "C:/Users/DGG/Documents/comsol/GDS/dot_3layers.GDS"
+addr = "/Users/bing/Desktop/COMSOL_pyva/GDS/dot_3layers.GDS"
 etch.build(model, gds_address = addr, etch_name = "mesa_etch",\
             etch_depth = 4+10.5+120, gdslayerID=0, chamfer = 1 - 2*(4+10.5+120)/390, numOflayers = gds_layer_num)
 
 
 # deposition
-
-# al2o3_mesa   = deposit.build(model, gds_address = addr, deposit_depth = 0,\
-#                              thickness = 35, deposit_name = 'al2o3_mesa', gdslayerID = 5, numOflayers = gds_layer_num)
 
 semi_dot     = deposit.build(model, gds_address = addr, deposit_depth = -(4+10.5+120),\
                              thickness = 4, deposit_name = 'semi_dot', gdslayerID = 4, numOflayers = gds_layer_num)
