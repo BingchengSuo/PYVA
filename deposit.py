@@ -93,8 +93,10 @@ def build(**kwargs):
         model.component("comp1").geom("geom1").run(int_name_2)
         model.component("comp1").geom("geom1").feature(int_name).set("intbnd", False)
         model.component("comp1").geom("geom1").run()
+        return int_name_2
 
     else:
+        metal = config.metal
         model.component("comp1").geom("geom1").create(workplane_name, "WorkPlane")
         model.component("comp1").geom("geom1").feature(workplane_name).set("unite", True)
         model.component("comp1").geom("geom1").feature(workplane_name).set("quickz", "800[nm]")
@@ -118,7 +120,8 @@ def build(**kwargs):
 
         model.component("comp1").geom("geom1").create(dif_name, "Difference")
         model.component("comp1").geom("geom1").feature(dif_name).selection("input").set(extrude_name)
-        model.component("comp1").geom("geom1").feature(dif_name).selection("input2").set(mesa)
+        model.component("comp1").geom("geom1").feature(dif_name).selection("input2").set(mesa,metal)
+
         model.component("comp1").geom("geom1").feature(dif_name).set("keepsubtract", True)
         model.component("comp1").geom("geom1").run(dif_name)
 

@@ -27,9 +27,9 @@ substrate.build()
 config.mesa = etch.build(etch_name = "mesa_etch", gdslayerID=0, chamfer = 1 - 2*(4+10.5+120)/390)
 
 # deposition
-semi_dot = deposit.build(thickness = 4, deposit_name = 'dot', gdslayerID = 4)
-metal    = deposit.build(thickness = 100, deposit_name = 'metal', gdslayerID = 2)
-Al2O3    = deposit.build(thickness = 35, deposit_name = 'Al2O3', gdslayerID = 5)
+config.dot    = deposit.build(thickness = 4, deposit_name = 'dot', gdslayerID = 4)
+config.metal  = deposit.build(thickness = 100, deposit_name = 'metal', gdslayerID = 2)
+Al2O3         = deposit.build(thickness = 35, deposit_name = 'Al2O3', gdslayerID = 5)
 
 # gates
 qpc     = gate.build(gate_depth = 35, gate_name = 'QPC', gdslayerID = 1)
@@ -39,7 +39,7 @@ plunger = gate.build(gate_depth = -(4+10.5+120-35), gate_name = 'Plunger', gdsla
 material.assign(material = 'Al2O3', selList = [Al2O3])
 
 # assign electrostatics module
-es.assign(es = "DomainTerminal", selList = [semi_dot])
+es.assign(es = "DomainTerminal", selList = [config.dot])
 es.assign(es = 'Ground', selList = [qpc, plunger])
 
 fileName = 'test1.mph'

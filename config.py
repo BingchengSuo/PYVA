@@ -9,4 +9,6 @@ substrate_size      = 40e3
 dot_depth           = -134.5
 etch_depth          = -134.5
 
-mesa = 0 
+mesa  = 0 
+dot   = 0
+metal = 0
