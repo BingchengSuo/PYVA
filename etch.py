@@ -6,6 +6,7 @@ def build(model, **kwargs):
     gds_address  = kwargs.get('gds_address', None)  # gds file address
     etch_name    = kwargs.get('etch_name', None)    # name of the etch 
     etch_depth   = kwargs.get('etch_depth', None)   # depth of the etch 
+    chamfer      = kwargs.get('chamfer', None)   # depth of the etch 
     id           = kwargs.get('gdslayerID', None)   # etch layer number 
     numOflayers  = kwargs.get('numOflayers', None)  # number of layers
 
@@ -35,6 +36,7 @@ def build(model, **kwargs):
     model.component("comp1").geom("geom1").feature(extrude_name).label(etch_name+"_Etch")
     model.component("comp1").geom("geom1").feature(extrude_name).set("reverse", True)
     model.component("comp1").geom("geom1").feature(extrude_name).setIndex("distance", str(etch_depth)+'[nm]', 0)
+    model.component("comp1").geom("geom1").feature("ext1").setIndex("scale", chamfer, 0, 1)
     model.component("comp1").geom("geom1").run(extrude_name)
     model.component("comp1").geom("geom1").create(dif_name, "Difference")
     main_body = read_log()

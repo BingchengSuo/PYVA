@@ -15,14 +15,14 @@ def assign(model, **kwargs):
     model.component("comp1").geom("geom1").run(sel_name)
 
     esDict = { 
-        "Ground": ['gnd',2],
-        "DomainTerminal": ['DomainTerminal',3]
+        "Ground": ['gnd',2,'_bnd'],
+        "DomainTerminal": ['DomainTerminal',3, '_dom']
     }
 
     module_name = esDict[es_name][0] + str(identifier)
 
     model.component("comp1").physics("es").create(module_name, es_name, esDict[es_name][1])
+     
+    model.component("comp1").physics("es").feature(module_name).selection().named("geom1_"+sel_name+esDict[es_name][2])
 
-    print("geom1_"+sel_name+"_dom")
-
-    model.component("comp1").physics("es").feature(module_name).selection().named("geom1_"+sel_name+"_dom")
+    
