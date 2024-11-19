@@ -39,7 +39,7 @@ plunger = gate.build(gate_depth = -(4+10.5+120-35), gate_name = 'Plunger', gdsla
 material.assign(material = 'Al2O3', selList = [Al2O3])
 
 # assign electrostatics module
-es.assign(es = "DomainTerminal", selList = [config.dot])
+es.assign(es = "DomainTerminal", selList = [config.dot, config.metal])
 es.assign(es = 'Ground', selList = [qpc, plunger])
 
 fileName = 'test1.mph'
