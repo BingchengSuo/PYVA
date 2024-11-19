@@ -1,10 +1,12 @@
 from functions import *
+import config
 
 @CallCounter
-def assign(model, **kwargs):
+def assign(**kwargs):
     identifier        = CallCounter.total_call_count
     material          = kwargs.get('material', None)    # selection list
-    selList           = kwargs.get('selList', None)    # selection list
+    selList           = kwargs.get('selList', None)     # selection list
+    model = config.model
 
     sel_name = 'sel' + str(identifier) # name of the selection
 
