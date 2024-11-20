@@ -40,6 +40,8 @@ def build():
     layer_idx = getLayerIndexDict(substrate_layers)
     for material in layer_idx.keys(): 
         model.component("comp1").material(material).selection().set(layer_idx[material])
+    
+    config.mesa = "blk1"
 
 
 

@@ -10,6 +10,9 @@ def jstr(pystr):
         """
         return jpype.JArray(jpype.JString)(pystr)
 
+def jarr(pyarr):
+    return jpype.JArray(jpype.JInt)(pyarr)
+
 def jint(pynum):
      return jpype.JInt(pynum)
 
