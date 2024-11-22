@@ -2,6 +2,8 @@ from functions import *
 import config
 
 def build():
+    print(f"buidling the heterostructure\033[K", end='\r', flush = True)
+
     model = config.model
     substrate_layers = config.substrate_layers
     layer_thickness  = config.layer_thickness

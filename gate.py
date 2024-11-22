@@ -11,6 +11,8 @@ def build(**kwargs):
     gds_address  = config.gds_addr
     model        = config.model
 
+    print(f"building {gate_name} gates\033[K", end='\r',flush = True)
+
     workplane_name = 'wp'  + str(identifier)
     import_name    = 'imp' + str(identifier)
 

@@ -23,6 +23,7 @@ def build(**kwargs):
     int_name       = 'int' + str(identifier)
     arr_name       = 'arr' + str(identifier)
 
+    print(f"depositing {deposit_name}                             ", end='\r', flush = True)
     if deposit_name == 'dot':
         model.component("comp1").geom("geom1").create(workplane_name, "WorkPlane")
         model.component("comp1").geom("geom1").feature(workplane_name).set("unite", True)

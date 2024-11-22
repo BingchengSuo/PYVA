@@ -12,6 +12,7 @@ dot_depth           = -134.5    # the depth of the dot
 etch_depth          = -134.5    # the depth of the etch 
 numOfdots           = 1         # number of dots
 dots_sep            = 1         # inter dot seperation
+filename            = 0 
 
 mesa  = []
 metal = []

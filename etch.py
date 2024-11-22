@@ -3,6 +3,8 @@ import config
 
 @CallCounter
 def build(**kwargs):
+    print(f"etching mesa\033[K", end='\r',flush = True)
+
     identifier   = CallCounter.total_call_count
     etch_name    = kwargs.get('etch_name', None)    # name of the etch 
     chamfer      = kwargs.get('chamfer', None)   # depth of the etch 
@@ -42,7 +44,7 @@ def build(**kwargs):
     model.component("comp1").geom("geom1").feature(extrude_name).label(etch_name+"_Etch")
     model.component("comp1").geom("geom1").feature(extrude_name).set("reverse", True)
     model.component("comp1").geom("geom1").feature(extrude_name).setIndex("distance", str(etch_depth)+'[nm]', 0)
-    model.component("comp1").geom("geom1").feature("ext1").setIndex("scale", chamfer, 0, 1)
+    model.component("comp1").geom("geom1").feature(extrude_name).setIndex("scale", chamfer, 0, 1)
     model.component("comp1").geom("geom1").run(extrude_name)
 
     model.component("comp1").geom("geom1").create(move_name, "Move")

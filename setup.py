@@ -4,6 +4,8 @@ from functions import *
 def build():
 
     # model Start
+    print(f"setting up the model\033[K", end='\r', flush = True)
+
     client = mph.start()
     model  = client.create('Model') 
     model  = model.java
