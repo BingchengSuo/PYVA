@@ -1,5 +1,6 @@
 import jpype
-import time
+import numpy as np
+import config
 
 def jstr(pystr):
         """
@@ -57,3 +58,12 @@ def getLayerIndexDict(list):
             indices[value] = []
         indices[value].append(index+1)
     return indices
+
+def getCmatrix():
+    numberOfdots = config.numOfdots
+    matrix = np.zeros((numberOfdots,numberOfdots))
+    for i in range(numberOfdots):
+        for j in range(numberOfdots):
+            element = config.modelpy.evaluate(f'es.Cinv{i+1}{j+1}')
+            matrix[i][j] = element[~np.isnan(element)]
+    return np.linalg.inv(matrix)

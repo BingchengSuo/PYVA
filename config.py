@@ -2,7 +2,8 @@ import numpy as np
 
 # default unit is [nm]
 
-model               = 0                     # mph model register
+model               = 0                     # mph java model register
+modelpy             = 0                     # mph python model register
 numOfGDSlayers      = 6                     # number of gds design layers
 gds_addr            = "dot_3layers.GDS"     # gds address 
 substrate_layers    = ['InAlAs','InGaAs','InAs','InGaAs','InAlAs'] # substrate layers from bottom to top
@@ -12,9 +13,13 @@ dot_depth           = -134.5    # the depth of the dot
 etch_depth          = -134.5    # the depth of the etch 
 numOfdots           = 1         # number of dots
 dots_sep            = 1         # inter dot seperation
+qpc_depth           = 1
+plunger_depth       = 1
 filename            = 0 
 
 mesa  = []
 metal = []
 dot   = []
 al2o3 = []
+
+cmatrix = []

@@ -1,4 +1,5 @@
 import mph
+import config
 from functions import *
 
 def build():
@@ -7,8 +8,8 @@ def build():
     print(f"setting up the model\033[K", end='\r', flush = True)
 
     client = mph.start()
-    model  = client.create('Model') 
-    model  = model.java
+    config.modelpy  = client.create('Model') 
+    model           = config.modelpy.java
 
     # create component nodes
     model.component().create("comp1", True)
@@ -28,4 +29,4 @@ def build():
     model.study("std1").feature("stssw").set("goalngenAUX", "1")
     model.study("std1").feature("stssw").setSolveFor("/physics/es", True)
 
-    return model
+    config.model = model
