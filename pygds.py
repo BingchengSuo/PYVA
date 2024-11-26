@@ -58,9 +58,9 @@ class gdsBuilder:
         region = []
         for i in range(config.numOfdots):
             gate_y    = (config.numOfdots-1)*config.dots_sep/2 - config.dots_sep*i
-            r = db.Box(-width/2, gate_y+50, width/2, gate_y-50)
+            r = db.Box(-width/2, gate_y+50, 0, gate_y-50)
             region = db.Region(r) + region
-        rsub = db.Region(db.Box(-1700/2, (config.numOfdots*config.dots_sep), 1700/2, -(config.numOfdots*config.dots_sep)))
+        rsub = db.Region(db.Box(-1500/2, (config.numOfdots*config.dots_sep), 1500/2, -(config.numOfdots*config.dots_sep)))
         region = region - rsub
         region = region.round_corners(200, 2000, 64)
         self.topcell.shapes(plungerLayer).insert(region)
@@ -72,11 +72,11 @@ class gdsBuilder:
         self.topcell.shapes(al2o3Layer).insert(r)
         
     def dot(self, layer_index):
-        radius = 946
+        radius = 940
         dotLayer = self.layout.layer(layer_index,0)
         region = db.Region(db.Box(-radius, -radius, radius, radius))
         region = region.round_corners(radius, 2000, 128)
-        rsub   = db.Region(db.Box(-4000/2, config.trench_width/2, 4000/2, -config.trench_width/2))
+        rsub   = db.Region(db.Box(-4000/2, config.trench_width/2 +5, 4000/2, -config.trench_width/2 -5))
         region = region - rsub
         self.topcell.shapes(dotLayer).insert(region)
         
