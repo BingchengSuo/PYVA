@@ -7,8 +7,8 @@ def build(**kwargs):
 
     identifier   = CallCounter.total_call_count
     etch_name    = kwargs.get('etch_name', None)    # name of the etch 
-    chamfer      = kwargs.get('chamfer', None)   # depth of the etch 
     id           = kwargs.get('gdslayerID', None)   # etch layer number 
+    chamfer      = config.trench_chamfer 
     numOflayers  = config.numOfGDSlayers
     gds_address  = config.gds_addr
     model        = config.model
@@ -44,7 +44,7 @@ def build(**kwargs):
     model.component("comp1").geom("geom1").feature(extrude_name).label(etch_name+"_Etch")
     model.component("comp1").geom("geom1").feature(extrude_name).set("reverse", True)
     model.component("comp1").geom("geom1").feature(extrude_name).setIndex("distance", str(etch_depth)+'[nm]', 0)
-    model.component("comp1").geom("geom1").feature(extrude_name).setIndex("scale", chamfer, 0, 1)
+    model.component("comp1").geom("geom1").feature(extrude_name).setIndex("scale", jpype.JDouble(chamfer), 0, 1)
     model.component("comp1").geom("geom1").run(extrude_name)
 
     model.component("comp1").geom("geom1").create(move_name, "Move")

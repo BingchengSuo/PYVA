@@ -13,7 +13,7 @@ class gdsBuilder:
 
     def trench(self, layer_index):
         width  = config.substrate_size
-        height = config.trench_chamfer + 2*abs(config.etch_depth)
+        height = config.trench_width + 2*abs(config.etch_depth)
         trench_layer = self.layout.layer(layer_index, 0)
         rectangle = db.Box(- width / 2, - height / 2, width / 2, height / 2)
         self.topcell.shapes(trench_layer).insert(rectangle)
@@ -76,7 +76,7 @@ class gdsBuilder:
         dotLayer = self.layout.layer(layer_index,0)
         region = db.Region(db.Box(-radius, -radius, radius, radius))
         region = region.round_corners(radius, 2000, 128)
-        rsub   = db.Region(db.Box(-4000/2, config.trench_chamfer/2, 4000/2, -config.trench_chamfer/2))
+        rsub   = db.Region(db.Box(-4000/2, config.trench_width/2, 4000/2, -config.trench_width/2))
         region = region - rsub
         self.topcell.shapes(dotLayer).insert(region)
         
