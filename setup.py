@@ -30,3 +30,10 @@ def build():
     model.study("std1").feature("stssw").setSolveFor("/physics/es", True)
 
     config.model = model
+    
+    config.mesa  = [] # mesa / etched mesa
+    config.metal = [] # metallic island / metallic dot
+    config.dot   = [] # semiconductor quantum dot 
+    config.al2o3 = [] # al2o3 
+    config.gates = [] # qpc + plunger gates
+    config.cmatrix = [] # maxwell's capactiance matrix
