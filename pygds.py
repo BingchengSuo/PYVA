@@ -72,7 +72,7 @@ class gdsBuilder:
         self.topcell.shapes(al2o3Layer).insert(r)
         
     def dot(self, layer_index):
-        radius = 940
+        radius = config.dots_sep/2 - 10
         dotLayer = self.layout.layer(layer_index,0)
         region = db.Region(db.Box(-radius, -radius, radius, radius))
         region = region.round_corners(radius, 2000, 128)
