@@ -35,10 +35,8 @@ def build():
         es.assign(es = "DomainTerminal", selList = [config.dot[i],config.metal[i]])
     es.assign(es = 'Ground', selList = config.gates)
 
-    fileName = config.mph_addr
-    config.model.save(fileName)
     # build mesh
-    # mesh.build()
+    mesh.build()
     
 def study():
     config.modelpy.solve('Study 1')
