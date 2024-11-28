@@ -18,6 +18,7 @@ trench_chamfer      = trench_width/(2*abs(etch_depth)+trench_width)       # the 
 qpc_depth           = 1         # the depth of qpcs
 plunger_depth       = 1         # the depth of plunger gates
 mph_addr            = 0         # filenames
+mesh                = 3
 
 etch_params = [
     {"etch_name": "mesa_etch", "gdslayerID": 0}

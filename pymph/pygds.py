@@ -85,21 +85,54 @@ class gdsBuilder:
         width       = config.substrate_size
         r = db.Region(db.Box(-width/2, -width/2, width/2, width/2))
         # trench
-        yy     = config.dots_sep/2
         height = config.trench_width + 2*abs(config.etch_depth)
-        t1     = db.Region(db.Box(- width / 2, yy- height / 2, width / 2, yy+height / 2))
-        t2     = db.Region(db.Box(- width / 2, -yy- height / 2, width / 2, -yy+height / 2))
+        tRegion = []
+        for i in range(config.numOfdots):
+            w      = config.dots_sep/2
+            yy     = w*(config.numOfdots-1) - i*2*w
+            t     = db.Region(db.Box(- width / 2, yy - height / 2, width / 2, yy+height / 2))
+            tRegion = t + tRegion
         # metal
-        width = config.metal_size
-        tol   = 10
-        m1 = db.Region(db.Box(-width-tol/2, yy-width-tol/2, width+tol/2, yy+width+tol/2))
-        m2 = db.Region(db.Box(-width-tol/2, -yy-width-tol/2, width+tol/2, -yy+width+tol/2))
-        m1 = m1.round_corners(0, 100, 64)
-        m2 = m2.round_corners(0, 100, 64)
-        region_sub = t1+t2+m1+m2
+        width = config.metal_size/2
+        mRegion = []
+        tol   = 50
+        for i in range(config.numOfdots):
+            w      = config.dots_sep/2
+            yy     = w*(config.numOfdots-1) - i*2*w
+            m = db.Region(db.Box(-width-tol, yy-width-tol, width+tol, yy+width+tol))
+            m = m.round_corners(0, 100, 64)
+            mRegion = m + mRegion
+        region_sub = mRegion + tRegion
         region  = r - region_sub
         self.topcell.shapes(screenLayer).insert(region)
-        
+    
+    def pscreen(self, layer_index):
+        screenLayer = self.layout.layer(layer_index,0)
+        width       = config.substrate_size
+        l = (config.numOfdots-1)*config.dots_sep
+        r = db.Region(db.Box(-width/2, -l/2, width/2, l/2))
+        # trench
+        height = config.trench_width + 2*abs(config.etch_depth)
+        tRegion = []
+        for i in range(config.numOfdots):
+            w      = config.dots_sep/2
+            yy     = w*(config.numOfdots-1) - i*2*w
+            t     = db.Region(db.Box(- width / 2, yy - height / 2, width / 2, yy+height / 2))
+            tRegion = t + tRegion
+        # metal
+        width = config.metal_size/2
+        mRegion = []
+        tol   = 50
+        for i in range(config.numOfdots):
+            w      = config.dots_sep/2
+            yy     = w*(config.numOfdots-1) - i*2*w
+            m = db.Region(db.Box(-width-tol, yy-width-tol, width+tol, yy+width+tol))
+            m = m.round_corners(0, 100, 64)
+            mRegion = m + mRegion
+        region_sub = mRegion + tRegion
+        region  = r - region_sub
+        self.topcell.shapes(screenLayer).insert(region)
+
     def save_layout(self, filename):
         self.layout.write(filename)
         
@@ -112,4 +145,6 @@ class gdsBuilder:
         self.dot(5)
         if opt == 'screen':
             self.screen(6)
+        elif opt == 'pscreen':
+            self.pscreen(6)
         self.save_layout(config.gds_addr)
