@@ -138,7 +138,7 @@ def build(**kwargs):
         
 
         model.component("comp1").geom("geom1").feature(workplane_name).geom().run(import_name)
-        model.component("comp1").geom("geom1").feature(workplane_name).label(deposit_name+"_wp")
+        model.component("comp1").geom("geom1").feature(workplane_name).label(deposit_name+workplane_name)
         model.component("comp1").geom("geom1").run(workplane_name)
         model.component("comp1").geom("geom1").feature().create(extrude_name, "Extrude")
         model.component("comp1").geom("geom1").feature(extrude_name).set("reverse", True)
@@ -194,7 +194,7 @@ def build(**kwargs):
         
 
         model.component("comp1").geom("geom1").feature(workplane_name).geom().run(import_name)
-        model.component("comp1").geom("geom1").feature(workplane_name).label(deposit_name+"_wp")
+        model.component("comp1").geom("geom1").feature(workplane_name).label(deposit_name+workplane_name)
         model.component("comp1").geom("geom1").run(workplane_name)
         model.component("comp1").geom("geom1").feature().create(extrude_name, "Extrude")
         model.component("comp1").geom("geom1").feature(extrude_name).set("reverse", True)

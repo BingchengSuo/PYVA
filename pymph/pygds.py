@@ -79,15 +79,37 @@ class gdsBuilder:
         rsub   = db.Region(db.Box(-4000/2, config.trench_width/2 +5, 4000/2, -config.trench_width/2 -5))
         region = region - rsub
         self.topcell.shapes(dotLayer).insert(region)
+
+    def screen(self, layer_index):
+        screenLayer = self.layout.layer(layer_index,0)
+        width       = config.substrate_size
+        r = db.Region(db.Box(-width/2, -width/2, width/2, width/2))
+        # trench
+        yy     = config.dots_sep/2
+        height = config.trench_width + 2*abs(config.etch_depth)
+        t1     = db.Region(db.Box(- width / 2, yy- height / 2, width / 2, yy+height / 2))
+        t2     = db.Region(db.Box(- width / 2, -yy- height / 2, width / 2, -yy+height / 2))
+        # metal
+        width = config.metal_size
+        tol   = 10
+        m1 = db.Region(db.Box(-width-tol/2, yy-width-tol/2, width+tol/2, yy+width+tol/2))
+        m2 = db.Region(db.Box(-width-tol/2, -yy-width-tol/2, width+tol/2, -yy+width+tol/2))
+        m1 = m1.round_corners(0, 100, 64)
+        m2 = m2.round_corners(0, 100, 64)
+        region_sub = t1+t2+m1+m2
+        region  = r - region_sub
+        self.topcell.shapes(screenLayer).insert(region)
         
     def save_layout(self, filename):
         self.layout.write(filename)
         
-    def build(self):
+    def build(self,opt):
         self.trench(0)
         self.qpc(1)
         self.metal(2)
         self.plunger(3)
         self.al2o3(4)
         self.dot(5)
+        if opt == 'screen':
+            self.screen(6)
         self.save_layout(config.gds_addr)
