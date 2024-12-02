@@ -112,7 +112,7 @@ class gdsBuilder:
         l = (config.numOfdots-1)*config.dots_sep
         r = db.Region(db.Box(-width/2, -l/2, width/2, l/2))
         # trench
-        height = config.trench_width + 2*abs(config.etch_depth)
+        height = config.trench_width + 2*abs(config.etch_depth) + config.screen_gate_offset
         tRegion = []
         for i in range(config.numOfdots):
             w      = config.dots_sep/2
