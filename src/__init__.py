@@ -1,2 +1,2 @@
 # pymph/__init__.py
-from main import build, study
+from pymph import build, study

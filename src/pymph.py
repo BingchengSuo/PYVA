@@ -42,6 +42,8 @@ def study():
     print(f"studying the model                    \033[K", end='\r',flush = True)
     config.modelpy.solve('Study 1')
     config.cmatrix = getCmatrix()
+    fileName = config.mph_addr
+    config.model.save(fileName)
     config.modelpy.clear()
     config.modelpy.reset()
     print(f"done                                  \033[K", end='\r',flush = True)

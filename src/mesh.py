@@ -8,6 +8,7 @@ def build():
     model.component("comp1").mesh("mesh1").run()
     fileName = config.mph_addr
     config.model.save(fileName)
+    print(f"done                                  \033[K", end='\r',flush = True)
 
 
 
