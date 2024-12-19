@@ -1,4 +1,4 @@
-import numpy as np 
+## parameter configurations 
 
 # user defined parameters (default unit is [nm])
 model               = 0                                            # mph java model register
@@ -6,7 +6,7 @@ modelpy             = 0                                            # mph python 
 numOfGDSlayers      = 6                                            # number of gds design layers
 gds_addr            = "double_dots.gds"                            # gds address 
 substrate_layers    = ['InAlAs','InGaAs','InAs','InGaAs','InAlAs'] # substrate layers from bottom to top
-layer_thickness     = np.array([1500, 10.5, 4, 10.5, 120])         # layer thickness of each layer
+layer_thickness     = [1500, 10.5, 4, 10.5, 120]                   # layer thickness of each layer
 substrate_size      = 40e3      # size/width of the substarte
 dot_depth           = -134.5    # the depth of the dot 
 etch_depth          = -134.5    # the depth of the etch 
