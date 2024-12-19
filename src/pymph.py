@@ -7,7 +7,9 @@ import material
 import es
 import mesh
 import config
+import numpy as np
 from functions import *
+
 
 def build():
     # configuration
@@ -37,6 +39,7 @@ def build():
 
     # build mesh
     mesh.build()
+    print(f"model is saved to {config.mph_addr}                                  \033[K", end='\r',flush = True)
     
 def study():
     print(f"studying the model                    \033[K", end='\r',flush = True)
@@ -46,4 +49,7 @@ def study():
     config.model.save(fileName)
     config.modelpy.clear()
     config.modelpy.reset()
-    print(f"done                                  \033[K", end='\r',flush = True)
+    c = config.cmatrix 
+    np.savez(config.npz_addr, c=c)
+    print(f"data is saved to {config.npz_addr}                                  \033[K", end='\n',flush = True)
+    print(f'npz parameter: c', end='\r',flush = True)

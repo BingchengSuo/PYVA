@@ -1,25 +1,33 @@
 ## parameter configurations 
+import numpy as np
 
-# user defined parameters (default unit is [nm])
-model               = 0                                            # mph java model register
-modelpy             = 0                                            # mph python model register
-numOfGDSlayers      = 6                                            # number of gds design layers
-gds_addr            = "double_dots.gds"                            # gds address 
-substrate_layers    = ['InAlAs','InGaAs','InAs','InGaAs','InAlAs'] # substrate layers from bottom to top
-layer_thickness     = [1500, 10.5, 4, 10.5, 120]                   # layer thickness of each layer
-substrate_size      = 40e3      # size/width of the substarte
-dot_depth           = -134.5    # the depth of the dot 
-etch_depth          = -134.5    # the depth of the etch 
-numOfdots           = 2         # number of dots
-dots_sep            = 1         # inter dot seperation
-metal_size          = 1         # size of the metal island
-trench_width        = 0
-trench_chamfer      = trench_width/(2*abs(etch_depth)+trench_width)       # the width of the trench for the actual device
-qpc_depth           = 1         # the depth of qpcs
-plunger_depth       = 1         # the depth of plunger gates
-mph_addr            = 0         # filenames
+## user defined parameters (default unit is [nm])
+## z=0 corresponds to the top surface of the heterostructure
+model               = 0                                             # mph java model register
+modelpy             = 0                                             # mph python model register
+numOfGDSlayers      = 0                                             # number of gds design layers
+substrate_layers    = ['InAlAs','InGaAs','InAs','InGaAs','InAlAs']  # substrate layers from bottom to top
+layer_thickness     = np.array([1500, 10.5, 4, 10.5, 120])          # layer thickness of each layer
+substrate_size      = 0                                             # size/width of the substarte
+dot_depth           = 0                                             # the depth of the dot 
+etch_depth          = 0                                             # the depth of the etch 
+numOfdots           = 2                                             # number of dots
+dots_sep            = 1                                             # inter dot seperation
+metal_size          = 1                                             # size of the metal island
+trench_width        = 0                                             # trench real width
+trench_chamfer      = 0                                             # trench chamfer
+qpc_depth           = 1                                             # the depth of qpcs
+plunger_depth       = 1                                             # the depth of plunger gates
+
+# file address
+fileName            = 'name'                                        # filename / identifier
+drive_addr          = 'addr'                                        # drive address
+local_addr          = 'addr'                                        # local address
+mph_addr            = local_addr + 'mph/' + fileName + '.mph'       # mph file save address
+npz_addr            = drive_addr + 'npz/' + fileName + '.npz'       # npz file save address
+gds_addr            = drive_addr + 'gds/' + fileName + '.gds'       # gds file save address
 screen_gate_offset  = 0
-mesh                = 3
+mesh                = 3                                             # mesh mode
 
 etch_params = [
     {"etch_name": "mesa_etch", "gdslayerID": 0}
